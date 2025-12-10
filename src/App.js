@@ -7,6 +7,9 @@ import Transfer from "./pages/Transfer";
 import Notifications from "./pages/Notifications";
 import Setpin from "./pages/Setpin"; // Make sure this exists
 import Navbar from "./components/Navbar";
+import Home from "./pages/Home";
+import Transactions from "./pages/Transaction";
+
 
 // PrivateRoute component to protect authenticated routes and ensure PIN is set
 function PrivateRoute({ children }) {
@@ -27,6 +30,7 @@ function AppWrapper() {
       {!hideNavbar && <Navbar />}
       <Routes>
         {/* Public routes */}
+        <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
         <Route path="/set-pin" element={<Setpin />} />
@@ -63,6 +67,14 @@ function AppWrapper() {
               <Notifications />
             </PrivateRoute>
           }
+        />
+        <Route
+          path="/transactions"
+          element={
+            <PrivateRoute>
+              <Transactions />
+            </PrivateRoute>
+        }
         />
 
         {/* Default redirect */}
