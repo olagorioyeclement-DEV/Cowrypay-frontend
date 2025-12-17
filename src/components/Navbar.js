@@ -10,14 +10,22 @@ export default function Navbar() {
   const token = localStorage.getItem("access");
 
   return (
-    <nav className="p-4 bg-gray-800 text-white flex gap-4">
-      <Link to="/" className="hover:underline">Home</Link>
+    <nav className="p-4 bg-gray-800 text-white flex gap-4 items-center">
+      
+      {/* Show Home ONLY when NOT logged in */}
+      {!token && (
+        <Link to="/" className="hover:underline">
+          Home
+        </Link>
+      )}
+
       {token ? (
         <>
           <Link to="/wallet" className="hover:underline">Wallet</Link>
           <Link to="/topup" className="hover:underline">Topup</Link>
           <Link to="/transfer" className="hover:underline">Transfer</Link>
           <Link to="/notifications" className="hover:underline">Notifications</Link>
+          <Link to="/settings" className="hover:underline">Settings</Link>
           <button
             onClick={logout}
             className="ml-auto bg-red-600 px-3 py-1 rounded hover:bg-red-700"
